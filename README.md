@@ -15,6 +15,8 @@ I tested the TLS client program with three different server instances, and here 
  
 This server instance did not meet the security requirement related to the root CA of the server's certificate. The client  code detected an issue in the verify certificate chain function. Line 70 in my code checks if the result obtained is correct and then gives an error in this case since the chain verification failed. And since that occurs then the program also gives an error about certificate validation failed which is on line 142.
 
+![server output 1][/Picture1.png]
+
 2.	Server instance 2 (IP: 10.10.10.164, Port: 9090)
  
 This server instance met all the security requirements. The handshake was successful, and the client was able to send and receive messages.
