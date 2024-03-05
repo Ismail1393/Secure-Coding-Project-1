@@ -21,9 +21,13 @@ This server instance did not meet the security requirement related to the root C
  
 This server instance met all the security requirements. The handshake was successful, and the client was able to send and receive messages.
 
+![server output 2](/Picture2.png)
+
 3.	Server instance 3 (IP: 10.10.10.164, Port: 9999)
    
 This server instance did not meet the security requirement related to the server's certificate common name. The client code detected this issue in the check common name function declared on line 25 and this returns an error which is mentioned in line 34. This function is called inside the certificate chain verification function in line 56.
+
+![server output 3](/Picture3.png)
 
 ## Help From ChatGPT
 During the implementation phase, I was assisted and guided by OpenAI's ChatGPT AI language model. The AI gave explanations, code snippets, and step-by-step directions. I was able to effectively construct the TLS client program in C while adhering to the necessary security criteria thanks to the important questions I asked and the responses I received from the AI.
@@ -46,7 +50,7 @@ Answer: Implement a custom certificate verification callback using SSL_CTX_set_c
 
 ## Screenshot
  
-
+![server Outputs](/Picture4.png)
 
 ## How to Run the Code 
 ```
