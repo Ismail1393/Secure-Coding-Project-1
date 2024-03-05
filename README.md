@@ -7,7 +7,7 @@ I was advised to use the OpenSSL library in C for this purpose. The key steps I 
 To establish a secure connection using OpenSSL, the process typically involves several steps. First, the OpenSSL library is initialized to enable cryptographic functions. Next, an SSL context is created, which sets parameters for the SSL connection. Then, the client connects to the server and initiates an SSL handshake to establish secure communication. During this handshake, the server's certificate common name and chain are verified to ensure the authenticity of the server. Once the handshake is successful, the client sends a "hello server" message, and the server responds with a message. Finally, after the communication is complete, resources are cleaned up, and the connection is closed to release system resources. This process ensures secure and encrypted communication between the client and server.
 I ran into a few problems with the implementation, such as missing log messages for each security criteria that wasn't met and syntax errors. I also encountered a problem where the server's certificate had expired, making the built-in certificate verification feature useless. As such, I was unable to depend on OpenSSL's default certificate verification mechanism. I asked ChatGPT for help in order to solve this problem by creating a custom function that ensured security standards were met and got around the issue of the expiring certificate. I was able to fix these problems and strengthen the implementation of the SSL connection with the help of the right code snippets that were supplied, as well as some tips for improving error reporting through log messages.
 
-##Findings & Details
+## Findings & Details
 I tested the TLS client program with three different server instances, and here are the results:
 1.	Server instance 1 (IP: 10.10.10.164, Port: 9000) 
  
@@ -37,18 +37,18 @@ Prompt 4: "How can I handle expired server certificates in OpenSSL while ensurin
 
 Answer: Implement a custom certificate verification callback using SSL_CTX_set_cert_verify_callback(). In the callback, manually verify the certificate's expiration date using X509_get_notBefore() and X509_get_notAfter(). Additionally, check other aspects of the certificate as needed. If the certificate is expired but other security criteria are met, decide based on your security policy whether to allow the connection. Log all decisions and relevant details.
 
-##Screenshot
+## Screenshot
  
 
 
-##How to Run the Code 
+## How to Run the Code 
 
 gcc finalcode.c -o final -lssl -lcrypto 
 ./final 10.10.10.164 9000 
 ./final 10.10.10.164 9090 
 ./final 10.10.10.164 9999
 
-##Source Code
+## Source Code
 
 #include <stdio.h>
 #include <stdlib.h>
