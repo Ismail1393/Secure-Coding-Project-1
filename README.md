@@ -42,14 +42,14 @@ Answer: Implement a custom certificate verification callback using SSL_CTX_set_c
 
 
 ## How to Run the Code 
-
+```
 gcc finalcode.c -o final -lssl -lcrypto 
 ./final 10.10.10.164 9000 
 ./final 10.10.10.164 9090 
 ./final 10.10.10.164 9999
-
+```
 ## Source Code
-
+```
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -220,3 +220,4 @@ int main(int argc, char *argv[]) {
 	cleanup_openssl();
 	return 0;
 }
+```
